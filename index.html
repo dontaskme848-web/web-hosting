@@ -58,12 +58,18 @@
     align-items:center;
     justify-content:center;
     text-align:center;
-    padding:0 14px;
-    overflow:hidden;
+    padding:0 20px;
+    overflow:visible;
   }
-  .wall-text > *{ width:74%; max-width:320px; }
+  .wall-text > *{
+    width:100%;
+    max-width:300px;
+    white-space:normal;
+    word-wrap:break-word;
+    overflow-wrap:break-word;
+  }
   .wall-text .w{
-    display:inline-block;
+    display:inline;
     opacity:0;
     transform:translateY(6px);
     animation:wordIn .5s ease forwards;
