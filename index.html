@@ -1,31 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sarah &amp; James — We're Getting Married</title>
+<title>دعوة زفاف — مصطفى وسيدة</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#FAFAF7;
-    --stone:#EBE8E0;
-    --ink:#1D1D1A;
-    --ink-soft:#54534C;
-    --forest:#33453A;
-    --gold:#A6874F;
-    --line:#D8D4C8;
+    --cream:#EDE9E6;
+    --card:#F4EFE8;
+    --tan:#C9996B;
+    --brown:#5C4F4A;
+    --sage:#5C766D;
+    --line:#DCD0C3;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Inter', sans-serif;
+    background:var(--cream);
+    color:var(--brown);
+    font-family:'Cairo', sans-serif;
     line-height:1.6;
+    overflow-x:hidden;
   }
   .wrap{max-width:640px; margin:0 auto; padding:0 24px;}
+
+  /* ---- Splash bar ---- */
+  #splash{
+    position:fixed; inset:0; z-index:9999;
+    background:var(--cream);
+    display:flex; align-items:center; justify-content:center;
+    animation:splashOut 0.7s ease 2.1s forwards;
+  }
+  @keyframes splashOut{
+    to{opacity:0; visibility:hidden; pointer-events:none;}
+  }
+  .splash-inner{
+    display:flex; flex-direction:column; align-items:center; gap:22px;
+  }
+  .splash-bar{
+    display:flex; align-items:center; gap:16px;
+    padding:16px 40px;
+    border-top:1px solid var(--tan);
+    border-bottom:1px solid var(--tan);
+  }
+  .splash-name{
+    font-family:'Amiri', serif;
+    font-weight:700;
+    font-size:clamp(24px, 7vw, 32px);
+    color:var(--brown);
+  }
+  .splash-amp{
+    font-family:'Amiri', serif;
+    font-size:18px;
+    color:var(--tan);
+  }
+  .splash-progress{
+    width:140px; height:1px; background:var(--line); overflow:hidden;
+  }
+  .splash-progress-fill{
+    height:100%; width:0%; background:var(--tan);
+    animation:fillbar 1.7s ease forwards;
+  }
+  @keyframes fillbar{ to{width:100%;} }
+
+  /* ---- Sprig ornament ---- */
+  .sprig{ display:flex; justify-content:center; margin:28px 0; }
 
   /* ---- Hero ---- */
   .hero{
@@ -35,296 +77,255 @@
     align-items:center;
     justify-content:center;
     text-align:center;
-    padding:80px 24px;
+    padding:70px 24px;
   }
-  .eyebrow{
-    font-size:12px;
-    letter-spacing:0.18em;
-    text-transform:uppercase;
-    color:var(--ink-soft);
-    margin-bottom:28px;
-    opacity:0;
-    animation:fadeUp 0.8s ease forwards;
+  .quote{
+    font-family:'Amiri', serif;
+    font-size:clamp(16px, 4.4vw, 21px);
+    line-height:2;
+    color:var(--brown);
+    max-width:480px;
   }
-  .names{
-    font-family:'Fraunces', serif;
-    font-weight:300;
-    font-size:clamp(48px, 10vw, 88px);
-    line-height:1.05;
-    letter-spacing:-0.01em;
-    opacity:0;
-    animation:fadeUp 0.9s ease 0.15s forwards;
+  .invite-block p{
+    font-family:'Amiri', serif;
+    font-size:clamp(15px, 4.2vw, 18px);
+    line-height:1.9;
+    margin:5px 0;
   }
-  .names em{
-    font-style:italic;
-    font-weight:500;
-    color:var(--forest);
-  }
-  .amp{
-    display:block;
-    font-family:'Fraunces', serif;
-    font-style:italic;
-    font-size:0.45em;
-    color:var(--gold);
-    margin:2px 0;
+  .invite-block .plain{ color:var(--sage); font-size:0.92em; }
+  .invite-block .fam{ font-weight:700; font-size:1.05em; color:var(--brown); }
+  .invite-block .couple{
+    font-weight:700;
+    font-size:1.4em;
+    color:var(--tan);
   }
   .date-line{
-    margin-top:26px;
+    margin-top:30px;
+    font-family:'Cairo', sans-serif;
     font-size:15px;
-    letter-spacing:0.06em;
-    color:var(--ink-soft);
-    opacity:0;
-    animation:fadeUp 0.9s ease 0.3s forwards;
+    letter-spacing:0.02em;
+    color:var(--sage);
   }
   .hr-thread{
-    width:1px;
-    height:56px;
-    background:var(--gold);
-    margin:40px auto;
-    opacity:0;
-    animation:growLine 1s ease 0.5s forwards;
+    width:1px; height:50px; background:var(--tan); margin:34px auto;
   }
 
   /* ---- Countdown ---- */
   .countdown{
     display:flex;
-    gap:clamp(18px, 5vw, 40px);
-    opacity:0;
-    animation:fadeUp 0.9s ease 0.6s forwards;
+    gap:clamp(16px, 5vw, 36px);
+    direction:ltr;
   }
   .cd-unit{text-align:center; min-width:56px;}
   .cd-num{
-    font-family:'Fraunces', serif;
-    font-weight:500;
-    font-size:clamp(30px, 6vw, 44px);
+    font-family:'Cairo', sans-serif;
+    font-weight:700;
+    font-size:clamp(28px, 6vw, 42px);
     font-variant-numeric:tabular-nums;
-    color:var(--forest);
+    color:var(--tan);
   }
   .cd-label{
     font-size:11px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--ink-soft);
+    letter-spacing:0.06em;
+    color:var(--sage);
     margin-top:6px;
   }
   .cd-sep{
-    font-family:'Fraunces', serif;
-    font-size:clamp(30px, 6vw, 44px);
+    font-family:'Cairo', sans-serif;
+    font-size:clamp(28px, 6vw, 42px);
     color:var(--line);
     align-self:flex-start;
     padding-top:2px;
   }
 
-  @keyframes fadeUp{
-    from{opacity:0; transform:translateY(14px);}
-    to{opacity:1; transform:translateY(0);}
-  }
-  @keyframes growLine{
-    from{opacity:0; height:0;}
-    to{opacity:1; height:56px;}
-  }
-
-  /* ---- Sections ---- */
+  /* ---- Panels ---- */
   section.panel{
-    padding:72px 24px;
+    padding:64px 24px;
     border-top:1px solid var(--line);
   }
-  .panel-inner{max-width:520px; margin:0 auto; text-align:center;}
+  .panel-inner{max-width:480px; margin:0 auto; text-align:center;}
   .section-eyebrow{
-    font-size:11px;
-    letter-spacing:0.16em;
-    text-transform:uppercase;
-    color:var(--gold);
-    margin-bottom:14px;
+    font-size:12px;
+    letter-spacing:0.1em;
+    color:var(--sage);
+    margin-bottom:12px;
   }
   .section-title{
-    font-family:'Fraunces', serif;
-    font-weight:300;
-    font-size:clamp(28px, 4vw, 36px);
-    margin-bottom:32px;
+    font-family:'Amiri', serif;
+    font-weight:700;
+    font-size:clamp(24px, 4.5vw, 30px);
+    margin-bottom:28px;
   }
 
-  .detail-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:32px;
-    text-align:left;
-    margin-top:8px;
-  }
   .detail-card{
-    background:var(--stone);
-    border-radius:2px;
+    background:var(--card);
+    border-radius:4px;
     padding:26px 22px;
+    max-width:280px;
+    margin:0 auto;
   }
   .detail-label{
-    font-size:11px;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    color:var(--ink-soft);
+    font-size:12px;
+    letter-spacing:0.06em;
+    color:var(--sage);
     margin-bottom:10px;
   }
   .detail-value{
-    font-family:'Fraunces', serif;
-    font-size:20px;
-    font-weight:500;
+    font-family:'Amiri', serif;
+    font-size:22px;
+    font-weight:700;
+    color:var(--tan);
     margin-bottom:4px;
   }
-  .detail-sub{font-size:14px; color:var(--ink-soft);}
-  .map-link{
-    display:inline-block;
-    margin-top:14px;
-    font-size:13px;
-    color:var(--forest);
-    text-decoration:none;
-    border-bottom:1px solid var(--forest);
-    padding-bottom:1px;
-  }
+  .detail-sub{font-size:14px; color:var(--brown);}
 
-  /* ---- RSVP ---- */
-  form{
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-    margin-top:8px;
-    text-align:left;
-  }
-  label{
-    font-size:11px;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    color:var(--ink-soft);
-    display:block;
-    margin-bottom:6px;
-  }
-  input, select, textarea{
+  /* ---- Location / map ---- */
+  .map-embed{
     width:100%;
-    font-family:'Inter', sans-serif;
-    font-size:15px;
-    padding:12px 14px;
-    border:1px solid var(--line);
-    border-radius:2px;
-    background:var(--paper);
-    color:var(--ink);
+    border-radius:4px;
+    overflow:hidden;
+    margin-top:6px;
   }
-  input:focus, select:focus, textarea:focus{
-    outline:none;
-    border-color:var(--forest);
+  .map-embed iframe{
+    width:100%; height:260px; border:0; display:block;
   }
-  button{
-    margin-top:8px;
-    padding:14px 28px;
-    background:var(--forest);
-    color:var(--paper);
-    border:none;
-    border-radius:2px;
-    font-size:13px;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    cursor:pointer;
-    transition:background 0.2s ease;
-  }
-  button:hover{background:#293830;}
-  #rsvp-confirm{
-    display:none;
-    margin-top:20px;
-    padding:16px;
-    background:var(--stone);
-    border-radius:2px;
+  .map-link-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:18px;
+    padding:13px 26px;
+    background:var(--brown);
+    color:var(--cream);
+    border-radius:4px;
     font-size:14px;
+    text-decoration:none;
   }
 
   footer{
     text-align:center;
-    padding:40px 24px 60px;
-    font-family:'Fraunces', serif;
+    padding:44px 24px 56px;
+  }
+  footer p{
+    font-family:'Amiri', serif;
     font-style:italic;
-    color:var(--ink-soft);
-    font-size:14px;
+    color:var(--sage);
+    font-size:15px;
   }
 
   @media (max-width:480px){
-    .detail-grid{grid-template-columns:1fr;}
+    .map-embed iframe{ height:220px; }
   }
 </style>
 </head>
 <body>
 
+<div id="splash">
+  <div class="splash-inner">
+    <div class="splash-bar">
+      <span class="splash-name">مصطفى</span>
+      <span class="splash-amp">و</span>
+      <span class="splash-name">سيدة</span>
+    </div>
+    <div class="splash-progress"><div class="splash-progress-fill"></div></div>
+  </div>
+</div>
+
 <section class="hero">
-  <div class="eyebrow">We're getting married</div>
-  <h1 class="names">Sarah <span class="amp">&amp;</span> <em>James</em></h1>
-  <div class="date-line">Saturday · 12 September 2026 · Alexandria, Egypt</div>
-  <div class="hr-thread"></div>
-  <div class="countdown" id="countdown">
-    <div class="cd-unit"><div class="cd-num" id="cd-days">00</div><div class="cd-label">Days</div></div>
-    <div class="cd-sep">:</div>
-    <div class="cd-unit"><div class="cd-num" id="cd-hours">00</div><div class="cd-label">Hours</div></div>
-    <div class="cd-sep">:</div>
-    <div class="cd-unit"><div class="cd-num" id="cd-mins">00</div><div class="cd-label">Minutes</div></div>
-    <div class="cd-sep">:</div>
-    <div class="cd-unit"><div class="cd-num" id="cd-secs">00</div><div class="cd-label">Seconds</div></div>
+  <div class="wrap">
+
+    <svg class="sprig" viewBox="0 0 120 40" width="90" height="30" aria-hidden="true">
+      <path d="M60 20 C 40 5, 20 5, 5 20" style="stroke:var(--tan); stroke-width:1; fill:none;"/>
+      <path d="M60 20 C 80 5, 100 5, 115 20" style="stroke:var(--tan); stroke-width:1; fill:none;"/>
+      <circle cx="60" cy="20" r="2.5" style="fill:var(--sage);"/>
+      <circle cx="30" cy="10" r="2" style="fill:var(--tan);"/>
+      <circle cx="90" cy="10" r="2" style="fill:var(--tan);"/>
+    </svg>
+
+    <p class="quote">وما الحُب إلا لمن أتو البيوت من أبوابها، فأعزو مقامنا، فأعززنا مقامهم بقبولاً ولين.</p>
+
+    <div class="sprig">
+      <svg viewBox="0 0 120 20" width="70" height="12" aria-hidden="true">
+        <line x1="5" y1="10" x2="115" y2="10" style="stroke:var(--line); stroke-width:1;"/>
+        <circle cx="60" cy="10" r="2.5" style="fill:var(--tan);"/>
+      </svg>
+    </div>
+
+    <div class="invite-block">
+      <p class="plain">نتشرف نحن</p>
+      <p class="fam">آل فتح الرحمن عبدالله خليفة</p>
+      <p class="plain amp">و</p>
+      <p class="fam">آل عمر محمد محمود</p>
+      <p class="plain">بدعوتكم لمشاركتنا اجمل لحظات العمر وحضور حفل زفاف</p>
+      <p class="couple">السيد مصطفى</p>
+      <p class="plain amp">و</p>
+      <p class="couple">الدكتورة سيدة</p>
+      <p class="plain">لتكمل فرحتنا وحضوركم يزينه</p>
+    </div>
+
+    <div class="date-line">الجمعة، 31 يوليو 2026 — الساعة 10:00 مساءً</div>
+
+    <div class="hr-thread"></div>
+
+    <div class="countdown" id="countdown">
+      <div class="cd-unit"><div class="cd-num" id="cd-days">00</div><div class="cd-label">أيام</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><div class="cd-num" id="cd-hours">00</div><div class="cd-label">ساعات</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><div class="cd-num" id="cd-mins">00</div><div class="cd-label">دقائق</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><div class="cd-num" id="cd-secs">00</div><div class="cd-label">ثواني</div></div>
+    </div>
+
   </div>
 </section>
 
 <section class="panel">
   <div class="panel-inner">
-    <div class="section-eyebrow">The details</div>
-    <h2 class="section-title">When &amp; where</h2>
-    <div class="detail-grid">
-      <div class="detail-card">
-        <div class="detail-label">Ceremony</div>
-        <div class="detail-value">5:00 PM</div>
-        <div class="detail-sub">Saturday, 12 Sept 2026</div>
-      </div>
-      <div class="detail-card">
-        <div class="detail-label">Reception</div>
-        <div class="detail-value">7:30 PM</div>
-        <div class="detail-sub">Dinner &amp; dancing to follow</div>
-      </div>
-    </div>
-    <div class="detail-card" style="margin-top:24px; text-align:center;">
-      <div class="detail-label">Venue</div>
-      <div class="detail-value">The Corniche Garden Hall</div>
-      <div class="detail-sub">14 Al Geish Road, Alexandria</div>
-      <a class="map-link" href="https://maps.google.com/?q=Alexandria+Egypt" target="_blank" rel="noopener">View on map →</a>
+    <div class="section-eyebrow">التفاصيل</div>
+    <h2 class="section-title">موعد الحفل</h2>
+    <div class="detail-card">
+      <div class="detail-label">التاريخ والوقت</div>
+      <div class="detail-value">10:00 مساءً</div>
+      <div class="detail-sub">الجمعة، 31 يوليو 2026</div>
     </div>
   </div>
 </section>
 
 <section class="panel">
   <div class="panel-inner">
-    <div class="section-eyebrow">Kindly respond</div>
-    <h2 class="section-title">RSVP</h2>
-    <form id="rsvp-form">
-      <div>
-        <label for="name">Full name</label>
-        <input type="text" id="name" required placeholder="Your name">
-      </div>
-      <div>
-        <label for="attending">Will you attend?</label>
-        <select id="attending" required>
-          <option value="">Select an option</option>
-          <option value="yes">Joyfully accepts</option>
-          <option value="no">Regretfully declines</option>
-        </select>
-      </div>
-      <div>
-        <label for="guests">Number of guests</label>
-        <input type="number" id="guests" min="0" max="5" value="1">
-      </div>
-      <div>
-        <label for="note">Note (optional)</label>
-        <textarea id="note" rows="3" placeholder="A message for the couple, dietary notes, etc."></textarea>
-      </div>
-      <button type="submit">Send RSVP</button>
-    </form>
-    <div id="rsvp-confirm">Thank you — your response has been recorded. We can't wait to celebrate with you.</div>
+    <div class="section-eyebrow">الموقع</div>
+    <h2 class="section-title">مكان الحفل</h2>
+    <div class="map-embed">
+      <iframe
+        src="https://www.google.com/maps?q=16.6961279,43.0413361&z=16&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="خريطة موقع الحفل">
+      </iframe>
+    </div>
+    <a class="map-link-btn" href="https://maps.app.goo.gl/4Cu4iNinsGS4JqS2A" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="fill:none; stroke:currentColor; stroke-width:2;">
+        <path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/>
+        <circle cx="12" cy="10" r="2.5"/>
+      </svg>
+      فتح الموقع في خرائط جوجل
+    </a>
   </div>
 </section>
 
-<footer>With love, Sarah &amp; James</footer>
+<footer>
+  <div class="sprig">
+    <svg viewBox="0 0 120 20" width="70" height="12" aria-hidden="true">
+      <line x1="5" y1="10" x2="115" y2="10" style="stroke:var(--line); stroke-width:1;"/>
+      <circle cx="60" cy="10" r="2.5" style="fill:var(--sage);"/>
+    </svg>
+  </div>
+  <p>بكل الحب، مصطفى وسيدة</p>
+</footer>
 
 <script>
-  var weddingDate = new Date("2026-09-12T17:00:00");
+  var weddingDate = new Date("2026-07-31T22:00:00");
 
   function pad(n){ return String(n).padStart(2, "0"); }
 
@@ -343,15 +344,6 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
-
-  document.getElementById("rsvp-form").addEventListener("submit", function(e){
-    e.preventDefault();
-    // This form is client-side only right now — it shows a confirmation
-    // but does not send data anywhere. Hook it up to a real backend
-    // (Formspree, Google Forms, or your own endpoint) to actually collect RSVPs.
-    document.getElementById("rsvp-form").style.display = "none";
-    document.getElementById("rsvp-confirm").style.display = "block";
-  });
 </script>
 
 </body>
