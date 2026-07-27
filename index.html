@@ -208,6 +208,14 @@
 </head>
 <body>
 
+<audio id="bgm" loop preload="auto">
+  <source src="%D9%85%D8%A8%D8%B1%D9%88%D9%83%20%D8%A7%D9%84%D9%81%D8%B1%D8%AD.mp3" type="audio/mpeg">
+</audio>
+<div class="sound-toggle" id="soundToggle" role="button" aria-label="كتم الصوت">
+  <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
+  <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><line x1="16" y1="9" x2="21" y2="14"/><line x1="21" y1="9" x2="16" y2="14"/></svg>
+</div>
+
 <div class="stage">
   <div class="bg-fixed"></div>
   <div class="wall-text" id="wallText"></div>
@@ -340,6 +348,32 @@
       renderBlock('greeting');
       sections.forEach(function(s){ observer.observe(s); });
     }, 2300);
+  });
+
+  var bgm = document.getElementById('bgm');
+  var soundToggle = document.getElementById('soundToggle');
+  bgm.volume = 0.32;
+
+  function startMusic(){
+    bgm.play().catch(function(){});
+    document.removeEventListener('click', startMusic);
+    document.removeEventListener('touchstart', startMusic);
+    document.removeEventListener('scroll', startMusic);
+  }
+  document.addEventListener('click', startMusic);
+  document.addEventListener('touchstart', startMusic);
+  document.addEventListener('scroll', startMusic, {passive:true});
+
+  soundToggle.addEventListener('click', function(e){
+    e.stopPropagation();
+    if(bgm.muted){
+      bgm.muted = false;
+      soundToggle.classList.remove('muted');
+      bgm.play().catch(function(){});
+    } else {
+      bgm.muted = true;
+      soundToggle.classList.add('muted');
+    }
   });
 </script>
 
