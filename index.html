@@ -169,6 +169,7 @@
     position:relative;
     z-index:5;
     pointer-events:auto;
+    touch-action:manipulation;
   }
   .wall-signoff{
     font-family:'Amiri', serif;
@@ -213,7 +214,7 @@
 <body>
 
 <audio id="bgm" loop preload="auto">
-  <source src="%D9%85%D8%A8%D8%B1%D9%88%D9%83%20%D8%A7%D9%84%D9%81%D8%B1%D8%AD.mp3" type="audio/mpeg">
+  <source src="song.mp3" type="audio/mpeg">
 </audio>
 <div class="sound-toggle" id="soundToggle" role="button" aria-label="كتم الصوت">
   <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
@@ -297,7 +298,7 @@
         +   '<svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" style="fill:none; stroke:currentColor; stroke-width:2;"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>'
         +   'فتح الموقع في خرائط جوجل'
         + '</a>'
-        + '<p class="wall-signoff">بكل الحب، مصطفى وسيدة</p>'
+        + '<p class="wall-signoff">بكل الحب مصطفى و سيدة</p>'
         + '</div>';
     }
   };
@@ -312,9 +313,30 @@
       wallText.classList.remove('leaving');
       var btn = document.getElementById('mapLinkBtn');
       if(btn){
-        btn.addEventListener('click', function(e){
-          e.preventDefault();
+        var openMap = function(){
           window.open('https://maps.app.goo.gl/4Cu4iNinsGS4JqS2A', '_blank', 'noopener');
+        };
+        var touchStartX = 0, touchStartY = 0, touchHandled = false;
+        btn.addEventListener('touchstart', function(e){
+          touchHandled = false;
+          var t = e.changedTouches[0];
+          touchStartX = t.clientX;
+          touchStartY = t.clientY;
+        }, {passive:true});
+        btn.addEventListener('touchend', function(e){
+          var t = e.changedTouches[0];
+          var dx = Math.abs(t.clientX - touchStartX);
+          var dy = Math.abs(t.clientY - touchStartY);
+          if(dx < 12 && dy < 12){
+            touchHandled = true;
+            e.preventDefault();
+            openMap();
+          }
+        });
+        btn.addEventListener('click', function(e){
+          if(touchHandled){ e.preventDefault(); return; }
+          e.preventDefault();
+          openMap();
         });
       }
     }, 220);
@@ -369,10 +391,12 @@
     bgm.play().catch(function(){});
     document.removeEventListener('click', startMusic);
     document.removeEventListener('touchstart', startMusic);
+    document.removeEventListener('touchend', startMusic);
     document.removeEventListener('scroll', startMusic);
   }
   document.addEventListener('click', startMusic);
   document.addEventListener('touchstart', startMusic);
+  document.addEventListener('touchend', startMusic);
   document.addEventListener('scroll', startMusic, {passive:true});
 
   soundToggle.addEventListener('click', function(e){
