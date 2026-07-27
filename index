@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarah &amp; James — We're Getting Married</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAFAF7;
+    --stone:#EBE8E0;
+    --ink:#1D1D1A;
+    --ink-soft:#54534C;
+    --forest:#33453A;
+    --gold:#A6874F;
+    --line:#D8D4C8;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+  }
+  .wrap{max-width:640px; margin:0 auto; padding:0 24px;}
+
+  /* ---- Hero ---- */
+  .hero{
+    min-height:92vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:80px 24px;
+  }
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:28px;
+    opacity:0;
+    animation:fadeUp 0.8s ease forwards;
+  }
+  .names{
+    font-family:'Fraunces', serif;
+    font-weight:300;
+    font-size:clamp(48px, 10vw, 88px);
+    line-height:1.05;
+    letter-spacing:-0.01em;
+    opacity:0;
+    animation:fadeUp 0.9s ease 0.15s forwards;
+  }
+  .names em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--forest);
+  }
+  .amp{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:0.45em;
+    color:var(--gold);
+    margin:2px 0;
+  }
+  .date-line{
+    margin-top:26px;
+    font-size:15px;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    opacity:0;
+    animation:fadeUp 0.9s ease 0.3s forwards;
+  }
+  .hr-thread{
+    width:1px;
+    height:56px;
+    background:var(--gold);
+    margin:40px auto;
+    opacity:0;
+    animation:growLine 1s ease 0.5s forwards;
+  }
+
+  /* ---- Countdown ---- */
+  .countdown{
+    display:flex;
+    gap:clamp(18px, 5vw, 40px);
+    opacity:0;
+    animation:fadeUp 0.9s ease 0.6s forwards;
+  }
+  .cd-unit{text-align:center; min-width:56px;}
+  .cd-num{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(30px, 6vw, 44px);
+    font-variant-numeric:tabular-nums;
+    color:var(--forest);
+  }
+  .cd-label{
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-top:6px;
+  }
+  .cd-sep{
+    font-family:'Fraunces', serif;
+    font-size:clamp(30px, 6vw, 44px);
+    color:var(--line);
+    align-self:flex-start;
+    padding-top:2px;
+  }
+
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(14px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @keyframes growLine{
+    from{opacity:0; height:0;}
+    to{opacity:1; height:56px;}
+  }
+
+  /* ---- Sections ---- */
+  section.panel{
+    padding:72px 24px;
+    border-top:1px solid var(--line);
+  }
+  .panel-inner{max-width:520px; margin:0 auto; text-align:center;}
+  .section-eyebrow{
+    font-size:11px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+  .section-title{
+    font-family:'Fraunces', serif;
+    font-weight:300;
+    font-size:clamp(28px, 4vw, 36px);
+    margin-bottom:32px;
+  }
+
+  .detail-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+    text-align:left;
+    margin-top:8px;
+  }
+  .detail-card{
+    background:var(--stone);
+    border-radius:2px;
+    padding:26px 22px;
+  }
+  .detail-label{
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+  }
+  .detail-value{
+    font-family:'Fraunces', serif;
+    font-size:20px;
+    font-weight:500;
+    margin-bottom:4px;
+  }
+  .detail-sub{font-size:14px; color:var(--ink-soft);}
+  .map-link{
+    display:inline-block;
+    margin-top:14px;
+    font-size:13px;
+    color:var(--forest);
+    text-decoration:none;
+    border-bottom:1px solid var(--forest);
+    padding-bottom:1px;
+  }
+
+  /* ---- RSVP ---- */
+  form{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    margin-top:8px;
+    text-align:left;
+  }
+  label{
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    display:block;
+    margin-bottom:6px;
+  }
+  input, select, textarea{
+    width:100%;
+    font-family:'Inter', sans-serif;
+    font-size:15px;
+    padding:12px 14px;
+    border:1px solid var(--line);
+    border-radius:2px;
+    background:var(--paper);
+    color:var(--ink);
+  }
+  input:focus, select:focus, textarea:focus{
+    outline:none;
+    border-color:var(--forest);
+  }
+  button{
+    margin-top:8px;
+    padding:14px 28px;
+    background:var(--forest);
+    color:var(--paper);
+    border:none;
+    border-radius:2px;
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:background 0.2s ease;
+  }
+  button:hover{background:#293830;}
+  #rsvp-confirm{
+    display:none;
+    margin-top:20px;
+    padding:16px;
+    background:var(--stone);
+    border-radius:2px;
+    font-size:14px;
+  }
+
+  footer{
+    text-align:center;
+    padding:40px 24px 60px;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:14px;
+  }
+
+  @media (max-width:480px){
+    .detail-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="eyebrow">We're getting married</div>
+  <h1 class="names">Sarah <span class="amp">&amp;</span> <em>James</em></h1>
+  <div class="date-line">Saturday · 12 September 2026 · Alexandria, Egypt</div>
+  <div class="hr-thread"></div>
+  <div class="countdown" id="countdown">
+    <div class="cd-unit"><div class="cd-num" id="cd-days">00</div><div class="cd-label">Days</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-unit"><div class="cd-num" id="cd-hours">00</div><div class="cd-label">Hours</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-unit"><div class="cd-num" id="cd-mins">00</div><div class="cd-label">Minutes</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-unit"><div class="cd-num" id="cd-secs">00</div><div class="cd-label">Seconds</div></div>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-inner">
+    <div class="section-eyebrow">The details</div>
+    <h2 class="section-title">When &amp; where</h2>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="detail-label">Ceremony</div>
+        <div class="detail-value">5:00 PM</div>
+        <div class="detail-sub">Saturday, 12 Sept 2026</div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-label">Reception</div>
+        <div class="detail-value">7:30 PM</div>
+        <div class="detail-sub">Dinner &amp; dancing to follow</div>
+      </div>
+    </div>
+    <div class="detail-card" style="margin-top:24px; text-align:center;">
+      <div class="detail-label">Venue</div>
+      <div class="detail-value">The Corniche Garden Hall</div>
+      <div class="detail-sub">14 Al Geish Road, Alexandria</div>
+      <a class="map-link" href="https://maps.google.com/?q=Alexandria+Egypt" target="_blank" rel="noopener">View on map →</a>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-inner">
+    <div class="section-eyebrow">Kindly respond</div>
+    <h2 class="section-title">RSVP</h2>
+    <form id="rsvp-form">
+      <div>
+        <label for="name">Full name</label>
+        <input type="text" id="name" required placeholder="Your name">
+      </div>
+      <div>
+        <label for="attending">Will you attend?</label>
+        <select id="attending" required>
+          <option value="">Select an option</option>
+          <option value="yes">Joyfully accepts</option>
+          <option value="no">Regretfully declines</option>
+        </select>
+      </div>
+      <div>
+        <label for="guests">Number of guests</label>
+        <input type="number" id="guests" min="0" max="5" value="1">
+      </div>
+      <div>
+        <label for="note">Note (optional)</label>
+        <textarea id="note" rows="3" placeholder="A message for the couple, dietary notes, etc."></textarea>
+      </div>
+      <button type="submit">Send RSVP</button>
+    </form>
+    <div id="rsvp-confirm">Thank you — your response has been recorded. We can't wait to celebrate with you.</div>
+  </div>
+</section>
+
+<footer>With love, Sarah &amp; James</footer>
+
+<script>
+  var weddingDate = new Date("2026-09-12T17:00:00");
+
+  function pad(n){ return String(n).padStart(2, "0"); }
+
+  function updateCountdown(){
+    var now = new Date();
+    var diff = weddingDate - now;
+    if (diff < 0) diff = 0;
+    var days = Math.floor(diff / (1000*60*60*24));
+    var hours = Math.floor((diff / (1000*60*60)) % 24);
+    var mins = Math.floor((diff / (1000*60)) % 60);
+    var secs = Math.floor((diff / 1000) % 60);
+    document.getElementById("cd-days").textContent = pad(days);
+    document.getElementById("cd-hours").textContent = pad(hours);
+    document.getElementById("cd-mins").textContent = pad(mins);
+    document.getElementById("cd-secs").textContent = pad(secs);
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  document.getElementById("rsvp-form").addEventListener("submit", function(e){
+    e.preventDefault();
+    // This form is client-side only right now — it shows a confirmation
+    // but does not send data anywhere. Hook it up to a real backend
+    // (Formspree, Google Forms, or your own endpoint) to actually collect RSVPs.
+    document.getElementById("rsvp-form").style.display = "none";
+    document.getElementById("rsvp-confirm").style.display = "block";
+  });
+</script>
+
+</body>
+</html>
