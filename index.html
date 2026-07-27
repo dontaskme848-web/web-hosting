@@ -54,20 +54,25 @@
     height:54%;
     z-index:1;
     display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:visible;
+  }
+  .wall-box{
+    width:62%;
+    max-width:260px;
+    max-height:100%;
+    overflow:hidden;
+    display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
     text-align:center;
-    padding:0 20px;
-    overflow:visible;
-  }
-  .wall-text > *{
-    width:100%;
-    max-width:300px;
     white-space:normal;
     word-wrap:break-word;
     overflow-wrap:break-word;
   }
+  .wall-box > *{ width:100%; }
   .wall-text .w{
     display:inline;
     opacity:0;
@@ -237,7 +242,7 @@
 
   var blocks = {
     greeting: function(){
-      return ''
+      return '<div class="wall-box">'
         + '<p class="wall-quote">' + wrapWords('وما الحُب إلا لمن أتو البيوت من أبوابها، فأعزو مقامنا، فأعززنا مقامهم بقبولاً ولين.') + '</p>'
         + '<div class="wall-flourish">' + flourishSVG + '</div>'
         + '<div class="wall-invite">'
@@ -251,10 +256,11 @@
         +   '<p class="couple">' + wrapWords('الدكتورة سيدة') + '</p>'
         +   '<p class="plain">' + wrapWords('لتكمل فرحتنا وحضوركم يزينه') + '</p>'
         + '</div>'
-        + '<div class="scroll-hint">⌄</div>';
+        + '<div class="scroll-hint">⌄</div>'
+        + '</div>';
     },
     date: function(){
-      return ''
+      return '<div class="wall-box">'
         + '<p class="wall-eyebrow">' + wrapWords('موعد الحفل') + '</p>'
         + '<p class="wall-couple-line">' + wrapWords('مصطفى و سيدة') + '</p>'
         + '<p class="wall-date">' + wrapWords('الجمعة، 31 يوليو 2026 — الساعة 10:00 مساءً') + '</p>'
@@ -266,10 +272,11 @@
         +   '<div class="cd-unit"><div class="cd-num" id="cd-mins">00</div><div class="cd-label">دقائق</div></div>'
         +   '<div class="cd-sep">:</div>'
         +   '<div class="cd-unit"><div class="cd-num" id="cd-secs">00</div><div class="cd-label">ثواني</div></div>'
+        + '</div>'
         + '</div>';
     },
     location: function(){
-      return ''
+      return '<div class="wall-box">'
         + '<p class="wall-eyebrow">' + wrapWords('مكان الحفل') + '</p>'
         + '<div class="wall-map">'
         +   '<iframe src="https://www.google.com/maps?q=16.6961279,43.0413361&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="خريطة موقع الحفل"></iframe>'
@@ -278,7 +285,8 @@
         +   '<svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" style="fill:none; stroke:currentColor; stroke-width:2;"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>'
         +   'فتح الموقع في خرائط جوجل'
         + '</a>'
-        + '<p class="wall-signoff">بكل الحب، مصطفى وسيدة</p>';
+        + '<p class="wall-signoff">بكل الحب، مصطفى وسيدة</p>'
+        + '</div>';
     }
   };
 
