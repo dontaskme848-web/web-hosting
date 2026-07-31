@@ -772,27 +772,19 @@
 
 
 
+  var musicStarted = false;
   function startMusic(){
-
-    bgm.play().catch(function(){});
-
-    document.removeEventListener('click', startMusic);
-
-    document.removeEventListener('touchstart', startMusic);
-
-    document.removeEventListener('touchend', startMusic);
-
-    document.removeEventListener('scroll', startMusic);
-
+    if (musicStarted) return;
+    bgm.play().then(function(){
+      musicStarted = true;
+      document.removeEventListener('click', startMusic);
+      document.removeEventListener('touchstart', startMusic);
+      document.removeEventListener('touchend', startMusic);
+    }).catch(function(){});
   }
-
   document.addEventListener('click', startMusic);
-
   document.addEventListener('touchstart', startMusic);
-
   document.addEventListener('touchend', startMusic);
-
-  document.addEventListener('scroll', startMusic, {passive:true});
 
 
 
